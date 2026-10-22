@@ -1,0 +1,25 @@
+const toggle=document.querySelector('.mobile-toggle'),links=document.querySelector('.links');if(toggle)toggle.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});const gallery=[...document.querySelectorAll('[data-gallery]')],modal=document.querySelector('.lightbox');if(modal){let index=0;const display=()=>{const el=gallery[index];modal.querySelector('img').src=el.dataset.gallery;modal.querySelector('img').alt=el.dataset.caption;modal.querySelector('.caption').textContent=el.dataset.caption;modal.querySelector('.lightbox-origin').textContent=el.dataset.origin||'Image'};const close=()=>{modal.classList.remove('open');document.body.style.overflow=document.getElementById('gallery-overlay')?.hidden?'':'hidden'};gallery.forEach((el,i)=>el.addEventListener('click',()=>{index=i;display();modal.classList.add('open');document.body.style.overflow='hidden'}));modal.querySelector('.close').addEventListener('click',close);modal.querySelector('.prev').addEventListener('click',()=>{index=(index-1+gallery.length)%gallery.length;display()});modal.querySelector('.next').addEventListener('click',()=>{index=(index+1)%gallery.length;display()});modal.addEventListener('click',e=>{if(e.target===modal)close()});document.addEventListener('keydown',e=>{if(!modal.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight'){index=(index+1)%gallery.length;display()}if(e.key==='ArrowLeft'){index=(index-1+gallery.length)%gallery.length;display()}})}
+// Load YouTube only after a visitor chooses to watch.
+document.querySelectorAll('.video-frame').forEach(frame=>{const button=frame.querySelector('.video-play');button.addEventListener('click',()=>{const id=frame.dataset.videoId;if(!/^[A-Za-z0-9_-]{11}$/.test(id))return;const player=document.createElement('iframe');player.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0';player.title='YouTube cooking video';player.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';player.allowFullscreen=true;player.referrerPolicy='strict-origin-when-cross-origin';frame.replaceChildren(player);});});
+
+
+// V6 gallery carousel and full-screen gallery overlay.
+(()=>{
+ const track=document.querySelector('.gallery-carousel');if(!track)return;
+ const cards=[...track.querySelectorAll('.gallery-card')],shell=document.querySelector('.carousel-shell'),viewport=document.querySelector('.carousel-window');
+ const overlay=document.getElementById('gallery-overlay'),grid=overlay.querySelector('.gallery-overlay-grid'),viewAll=document.querySelector('.gallery-view-all');
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let current=0,paused=false,swipe=null,lastFocus=null;
+ const visible=()=>matchMedia('(max-width:650px)').matches?1:3;
+ function go(i){const max=Math.max(0,cards.length-visible());current=i>max?0:i<0?max:i;track.style.transform=`translateX(-${cards[current].offsetLeft-cards[0].offsetLeft}px)`}
+ document.querySelector('.carousel-prev').addEventListener('click',()=>go(current-1));document.querySelector('.carousel-next').addEventListener('click',()=>go(current+1));
+ shell.addEventListener('mouseenter',()=>paused=true);shell.addEventListener('mouseleave',()=>paused=false);shell.addEventListener('focusin',()=>paused=true);shell.addEventListener('focusout',()=>paused=false);
+ viewport.addEventListener('touchstart',e=>{swipe=e.touches[0].clientX;paused=true},{passive:true});viewport.addEventListener('touchend',e=>{if(swipe!==null){let dx=e.changedTouches[0].clientX-swipe;if(Math.abs(dx)>40)go(current+(dx<0?1:-1));swipe=null;paused=false}},{passive:true});
+ addEventListener('resize',()=>go(Math.min(current,cards.length-visible())));
+ if(!reduced)setInterval(()=>{if(!paused&&overlay.hidden&&!document.querySelector('.lightbox.open')&&!document.hidden)go(current+1)},5500);
+ cards.forEach(card=>{const clone=card.cloneNode(true);clone.addEventListener('click',()=>card.click());grid.append(clone)});
+ function open(){lastFocus=document.activeElement;overlay.hidden=false;document.body.style.overflow='hidden';viewAll.setAttribute('aria-expanded','true');overlay.querySelector('.gallery-overlay-close').focus()}
+ function close(){overlay.hidden=true;document.body.style.overflow='';viewAll.setAttribute('aria-expanded','false');if(lastFocus)lastFocus.focus()}
+ viewAll.addEventListener('click',open);overlay.querySelector('.gallery-overlay-close').addEventListener('click',close);
+ overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+ document.addEventListener('keydown',e=>{if(overlay.hidden)return;if(e.key==='Escape'&&!document.querySelector('.lightbox.open'))close();if(e.key==='Tab'&&!document.querySelector('.lightbox.open')){const focusables=[...overlay.querySelectorAll('button')];let first=focusables[0],last=focusables[focusables.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+})();

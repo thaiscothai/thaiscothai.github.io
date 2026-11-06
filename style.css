@@ -78,7 +78,7 @@
 .subbrand-inline{font-size:.62rem;letter-spacing:.15em;color:#e7d8c6}
 .footer-logo-lockup{position:relative;width:176px;max-width:45vw;margin:8px auto 14px;aspect-ratio:335/375}
 .footer-logo-lockup img,.footer-logo-lockup svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.footer-logo-lockup img{object-fit:contain}
+.footer-logo-lockup img{object-fit:contain;clip-path:inset(0 0 20% 0)}
 .footer-logo-lockup svg{overflow:visible}
 .footer .footer-brand{margin-bottom:2px}
 .book1-cover-stage{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;min-height:0!important;transform:rotate(7deg)!important}

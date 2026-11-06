@@ -60,3 +60,14 @@
 .footer-brand{font-family:Georgia,serif;font-size:1.5rem;letter-spacing:.12em;color:#f2c777;margin-bottom:4px}
 @media(max-width:850px){.book1-cover-stage{min-height:0;padding:22px}.book1-cover-stage img{max-height:500px}}
 @media(max-width:550px){.identity .brand{font-size:1.25rem}.identity .subbrand{font-size:.5rem;letter-spacing:.12em}.book1-cover-stage{padding:16px}.section-brand-lockup{max-width:100%;margin:14px 0 22px}}
+
+/* Planned book-cover rebrand: cover the retired hybrid emblem and old front-cover lockup */
+.book-cover-shell{position:relative;width:100%;max-width:300px;margin:0 auto 14px;isolation:isolate}
+.book-cover-shell .book-cover{display:block;width:100%;height:auto;max-height:none;object-fit:contain;margin:0;filter:drop-shadow(0 8px 9px #32231d35)}
+.book-front-brand-mask{position:absolute;z-index:2;top:0;left:13%;right:4%;height:21%;min-height:82px;max-height:104px;background:var(--cover-tone);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.book-front-script{display:block;color:var(--cover-ink);font-family:"Brush Script MT","Segoe Script",cursive;font-style:italic;font-size:clamp(15px,1.8vw,22px);line-height:.76;text-align:center;transform:rotate(-7deg);text-shadow:0 1px 1px #0002}
+.book-front-brushstroke{display:block;width:43%;height:10px;margin-top:7px;transform:rotate(-7deg) skewX(-18deg);clip-path:polygon(0 34%,100% 0,96% 100%,3% 82%);background:linear-gradient(to bottom,#d92727 0 33%,#f8f2e7 33% 66%,#2457b8 66% 100%)}
+.book-spine-mask{position:absolute;z-index:3;top:0;left:0;width:13%;height:13%;min-height:48px;background:var(--cover-tone);display:flex;align-items:center;justify-content:center}
+.spine-brushstroke{display:block;width:70%;height:8px;transform:rotate(-72deg) skewX(-18deg);clip-path:polygon(0 30%,100% 0,96% 100%,3% 82%);background:linear-gradient(to bottom,#d92727 0 33%,#f8f2e7 33% 66%,#2457b8 66% 100%)}
+@media(max-width:850px){.book-front-script{font-size:19px}.book-front-brand-mask{height:22%;min-height:86px}}
+@media(max-width:550px){.book-cover-shell{max-width:300px}.book-front-script{font-size:21px}.book-front-brand-mask{height:22%;min-height:90px}}

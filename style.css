@@ -48,3 +48,15 @@
   line-height:1.35;
   padding:10px 5px 0;
 }
+
+/* ThaiScoThai 2026 identity refresh */
+.identity{justify-content:flex-start;text-align:left;margin-right:auto}
+.identity .brand{line-height:1.05}
+.identity .subbrand{margin-top:4px;white-space:nowrap}
+.book1-cover-stage{width:min(100%,420px);min-height:610px;margin:0 auto;background:#f4ead8;border:1px solid #e0d0b8;border-radius:5px;display:flex;align-items:center;justify-content:center;padding:28px;box-shadow:0 18px 36px #2a1a1026}
+.book1-cover-stage img{display:block;width:auto;max-height:550px;max-width:100%;height:auto;object-fit:contain;transform:rotate(-3deg);box-shadow:12px 18px 25px #21171245;border:1px solid #d7c6ad}
+.section-brand-lockup{max-width:560px;margin:18px 0 24px;padding:4px 0}
+.section-brand-lockup svg{display:block;width:100%;height:auto;overflow:visible}
+.footer-brand{font-family:Georgia,serif;font-size:1.5rem;letter-spacing:.12em;color:#f2c777;margin-bottom:4px}
+@media(max-width:850px){.book1-cover-stage{min-height:0;padding:22px}.book1-cover-stage img{max-height:500px}}
+@media(max-width:550px){.identity .brand{font-size:1.25rem}.identity .subbrand{font-size:.5rem;letter-spacing:.12em}.book1-cover-stage{padding:16px}.section-brand-lockup{max-width:100%;margin:14px 0 22px}}

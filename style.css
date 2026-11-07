@@ -107,3 +107,6 @@
 .amazon-link:hover{text-decoration:underline}
 @media(max-width:1050px){.subbrand-inline{display:none}.essentials-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.essentials-hero{padding:48px 20px 35px}.essentials-section{padding:42px 18px}.essentials-grid{grid-template-columns:1fr}.essential-card{padding:15px}.essentials-section-head{align-items:start}.footer-logo-lockup{width:150px}}
+
+.voltage-disclaimer{max-width:100%;margin:-8px 0 22px;padding:13px 16px;background:#fff8ed;border-left:4px solid var(--gold);color:#5f4937;font-size:.92rem;line-height:1.55;border-radius:3px}
+.voltage-disclaimer strong{color:#38271c}

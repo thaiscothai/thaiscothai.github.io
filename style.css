@@ -110,3 +110,9 @@
 
 .voltage-disclaimer{max-width:100%;margin:-8px 0 22px;padding:13px 16px;background:#fff8ed;border-left:4px solid var(--gold);color:#5f4937;font-size:.92rem;line-height:1.55;border-radius:3px}
 .voltage-disclaimer strong{color:#38271c}
+
+
+/* Kitchen Essentials: workbook product photography sprite (39 matched products) */
+.essential-card{align-items:center}
+.essential-card-image{width:92px;flex:0 0 92px;aspect-ratio:1;background-image:url('assets/products/shop-products-sprite.webp');background-repeat:no-repeat;background-size:500% 800%;background-position:var(--sprite-x) var(--sprite-y);background-color:#f9f6f0;border:1px solid #eee5d9;border-radius:5px}
+@media(max-width:640px){.essential-card-image{width:82px;flex-basis:82px}}
